@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="M1_ISI_isiviewer_glut" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="isiviewer">
+         <Option output="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/isiviewer" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DQT_NO_DEBUG" />
+            <Add option="-DQT_OPENGL_LIB" />
+            <Add option="-DQT_GUI_LIB" />
+            <Add option="-DQT_XML_LIB" />
+            <Add option="-DQT_CORE_LIB" />
+            <Add directory="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default" />
+            <Add directory="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut" />
+            <Add directory="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/glm-0.4.1" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/qt4" />
+            <Add directory="/usr/include/qt4/QtCore" />
+            <Add directory="/usr/include/qt4/QtGui" />
+            <Add directory="/usr/include/qt4/QtOpenGL" />
+            <Add directory="/usr/include/qt4/QtXml" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 isiviewer" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="isiviewer/fast">
+         <Option output="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/isiviewer" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DQT_NO_DEBUG" />
+            <Add option="-DQT_OPENGL_LIB" />
+            <Add option="-DQT_GUI_LIB" />
+            <Add option="-DQT_XML_LIB" />
+            <Add option="-DQT_CORE_LIB" />
+            <Add directory="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default" />
+            <Add directory="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut" />
+            <Add directory="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/glm-0.4.1" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/qt4" />
+            <Add directory="/usr/include/qt4/QtCore" />
+            <Add directory="/usr/include/qt4/QtGui" />
+            <Add directory="/usr/include/qt4/QtOpenGL" />
+            <Add directory="/usr/include/qt4/QtXml" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 isiviewer/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/build-isiviewer_glut-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/main.cpp">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_main_window.cpp">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_objects.cpp">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_qglviewer.cpp">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_scene.cpp">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_gui_form.ui">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_main_window.h">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_objects.h">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_qglviewer.h">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/my_scene.h">
+      </Unit>
+      <Unit filename="/home/47/seawadi/Bureau/stockage/M1TI/ISI/TP3/isiviewer_glut/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
