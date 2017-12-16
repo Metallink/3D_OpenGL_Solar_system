@@ -1,4 +1,0 @@
-# Hashes of file build rules.
-116d17129fdfc8306f0f985131c8f1ea moc_my_main_window.cxx
-6d4d974d211d923e4d0129f1a5aaa199 moc_my_scene.cxx
-f4061f94fc83030e6d2a5d1cbecc12e1 ui_my_gui_form.h

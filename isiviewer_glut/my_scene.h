@@ -18,65 +18,83 @@
 
 class MyScene : public QObject
 {
-  Q_OBJECT
+Q_OBJECT
 
-  enum displayModeType {WIREFRAME, FLATSHADED, SMOOTHSHADED};
-  enum objectName {CUBE, AXIS, SOLARSYSTEM, DANCERS};
+enum displayModeType {WIREFRAME, FLATSHADED, SMOOTHSHADED};
+enum objectName {CUBE, AXIS, SOLARSYSTEM, DANCERS};
 //   enum objectName {CUBE, PYRAMID, DISK, DISKHOLE, CYLINDER, CONE, SPHERE,
-// 		   AXIS, SOLARSYSTEM, DANCERS};
+//       AXIS, SOLARSYSTEM, DANCERS};
 
 protected:
-  // 3D Objects
-  Cube   _cube;			/**< a 3D cube */
+// 3D Objects
+Cube _cube;         /**< a 3D cube */
 
 
-  // Parameters
-  int   _currentObject;	        /**< id of the current displayed 3D object */
-  int   _numberOfObjects;	/**< number of 3D objets available */
-  float _radius;		/**< radius of the object from the graphical interface */
-  int _nbRotate;
-  int _nbRotatePlanete;
-  int  _displayMode;		/**< current display mode */
+// Parameters
+int _currentObject;             /**< id of the current displayed 3D object */
+int _numberOfObjects;     /**< number of 3D objets available */
+float _radius;      /**< radius of the object from the graphical interface */
+int _nbRotate;
+int _nbRotatePlanete;
+int _displayMode;       /**< current display mode */
 
-  // VARIABLES GLOBALES A VOIR
-  int _x;
-  int _y;
+// VARIABLES GLOBALES A VOIR
+int _x;
+int _y;
 
-  // Info for GUI
-  double _radiusMin;
-  double _radiusMax;
-  double _radiusIncr;
+// Info for GUI
+double _radiusMin;
+double _radiusMax;
+double _radiusIncr;
 
- public:
-  MyScene(float radius=1.);
-  ~MyScene();
+public:
+MyScene(float radius=1.);
+~MyScene();
 
-  inline void setCurrentObject(int co){_currentObject=co;}
-  inline int currentObject(){return _currentObject;}
-  inline void setDisplayMode(int dm){_displayMode=dm;}
-  inline int displayMode(){return _displayMode;}
+inline void setCurrentObject(int co){
+        _currentObject=co;
+}
+inline int currentObject(){
+        return _currentObject;
+}
+inline void setDisplayMode(int dm){
+        _displayMode=dm;
+}
+inline int displayMode(){
+        return _displayMode;
+}
 
-  inline void setRadius(float radius){_radius=radius;}
-  inline float radius(){return _radius;}
-  inline double radiusMin (){return _radiusMin;}
-  inline double radiusMax (){return _radiusMax;}
-  inline double radiusIncr(){return _radiusIncr;}
+inline void setRadius(float radius){
+        _radius=radius;
+}
+inline float radius(){
+        return _radius;
+}
+inline double radiusMin (){
+        return _radiusMin;
+}
+inline double radiusMax (){
+        return _radiusMax;
+}
+inline double radiusIncr(){
+        return _radiusIncr;
+}
 
-  void init();
-  void draw();
+void init();
+void draw();
 
- signals:
-  void sigCurrentObjectChanged(int co);
-  void sigDisplayModeChanged(int dm);
-  void sigRadiusChanged(double radius);
+signals:
+void sigCurrentObjectChanged(int co);
+void sigDisplayModeChanged(int dm);
+void sigRadiusChanged(double radius);
 
- public slots:
-  void slotSetCurrentObject(int co);
-  void slotSetDisplayMode(int dm);
-  void slotSetRadius(double radius);
+public slots:
+void slotSetCurrentObject(int co);
+void slotSetDisplayMode(int dm);
+void slotSetRadius(double radius);
 
- public:
-  bool keyPressEvent(QKeyEvent *e);
+public:
+bool keyPressEvent(QKeyEvent *e);
 
 
 };
