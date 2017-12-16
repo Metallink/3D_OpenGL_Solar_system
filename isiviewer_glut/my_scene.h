@@ -34,13 +34,15 @@ Cube _cube;         /**< a 3D cube */
 int _currentObject;             /**< id of the current displayed 3D object */
 int _numberOfObjects;     /**< number of 3D objets available */
 float _radius;      /**< radius of the object from the graphical interface */
-int _nbRotate;
-int _nbRotatePlanete;
 int _displayMode;       /**< current display mode */
 
-// VARIABLES GLOBALES A VOIR
+// TODO: changer ca plus tard et le voir si possibilité de le mettre dans un object.c pour chaque planete
 int _x;
 int _y;
+int _revolutionMercure;
+int _rotationMercure;
+int _revolutionVenus;
+int _rotationVenus;
 
 // Info for GUI
 double _radiusMin;

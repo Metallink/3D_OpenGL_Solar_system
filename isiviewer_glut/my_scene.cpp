@@ -126,9 +126,11 @@ void MyScene::draw()
                 glutSolidSphere(1, 20,10);
                 glPopMatrix();
 
-                // axe blanc autour du soleil
-                glColor3d(255,255,255);
 
+                /********************** MERCURE **********************/
+
+
+                glColor3d(255,255,255);
                 GLfloat x;
                 GLfloat y;
                 int i;
@@ -146,10 +148,11 @@ void MyScene::draw()
                 }
                 glEnd();
 
+
                 // mercure
                 glPushMatrix();
-                glRotatef(_nbRotate,0,0,-1); // revolution
-                glRotatef(_nbRotatePlanete,0,0,-1); //rotation
+                glRotatef(_revolutionMercure,0,0,-1); // revolution
+                glRotatef(_rotationMercure,0,0,-1); //rotation
                 glTranslatef(2,0,0);
                 glScalef(0.3,0.3,0.3);
                 glColor3f(242,245,249);
@@ -157,10 +160,24 @@ void MyScene::draw()
                 glPopMatrix();
 
 
-                // venus
+                /********************** VENUS **********************/
+
+
+                glColor3d(255,255,255);
+
+                glBegin(GL_LINE_LOOP);
+                for(i = 0; i <= lineAmount; i++) {
+                        glVertex2f(
+                                x + (radius * cos(i *  twicePi / lineAmount)),
+                                y + (radius* sin(i * twicePi / lineAmount))
+                                );
+                }
+                glEnd();
+
+
                 glPushMatrix();
-                glRotatef(_nbRotate,0,0,-1); // revolution
-                glRotatef(_nbRotatePlanete,0,0,-1); //rotation
+                glRotatef(_revolutionVenus,0,0,-1); // revolution
+                glRotatef(_rotationVenus,0,0,-1); //rotation
                 glTranslatef(3,0,0);
                 glScalef(0.5,0.5,0.5);
                 glColor3f(212,55,72);
@@ -283,8 +300,10 @@ bool MyScene::keyPressEvent(QKeyEvent *e)
                 std::cout << "Vous avez appuyez sur Z" << endl;
                 //this->_x += 1;
                 //this->_y += 1;
-                this->_nbRotate += 2;
-                this->_nbRotatePlanete +=  4;
+                this->_revolutionMercure += 2;
+                this->_rotationMercure +=  4;
+                this->_revolutionVenus += 6;
+                this->_rotationVenus +=  7;
         }
 
 
