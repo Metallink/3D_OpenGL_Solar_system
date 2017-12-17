@@ -1,11 +1,15 @@
 #include "my_scene.h"
+#include "planet.h"
 
 #include <iostream>
 #include <math.h>
 #include <GL/gl.h>  // OpenGL include file
 #include <GL/glut.h>
 
+//NOTE: https://www.youtube.com/watch?v=2E2OA_txjEI
+
 using namespace std;
+
 
 /**
  * Constructor
@@ -117,77 +121,149 @@ void MyScene::draw()
 
         case MyScene::SOLARSYSTEM:
 
-                //... insert here the other objects
+                /* creation des objets planetes */
 
-                // création et insertion du soleil
+                Planet soleil (5.0, 0, 0, 0);
+                Planet mercure (0.38, 1, 0, 0);
+                Planet venus (0.95, 2, 0, 0);
+                Planet terre (1, 3,0, 0);
+                Planet mars (0.53, 4, 0, 0);
+                Planet jupiter (11.19, 5, 0, 0);
+                Planet saturne(9.41, 6, 0, 0);
+                Planet uranus (4.01, 7, 0, 0);
+                Planet neptune(3.89, 8, 0, 0);
+
+                /* creation des orbites */
+
+                soleil.traceOrbite();
+                mercure.traceOrbite();
+                venus.traceOrbite();
+                terre.traceOrbite();
+                mars.traceOrbite();
+                jupiter.traceOrbite();
+                saturne.traceOrbite();
+                uranus.traceOrbite();
+                neptune.traceOrbite();
+
+                /* on trace les planetes */
+
+
+                /********************** SOLEIL **********************/
                 glPushMatrix();
-                glScalef(0.9,0.9,0.9);
-                glColor3f(255,255,0);
-                glutSolidSphere(1, 20,10);
+                glColor3f(255,255,0); // jaune
+                glRotatef(soleil._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(soleil._distance, 0.0, 0.0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(soleil._radius, 20,10);
+                //glScalef(0.9,0.9,0.9);
                 glPopMatrix();
-
-
+                glPopMatrix();
                 /********************** MERCURE **********************/
-
-
-                glColor3d(255,255,255);
-                GLfloat x;
-                GLfloat y;
-                int i;
-                int lineAmount = 100; //# of triangles used to draw circle
-
-                GLfloat radius = 2.0f; //radius
-                GLfloat twicePi = 2.0f * M_PI;
-
-                glBegin(GL_LINE_LOOP);
-                for(i = 0; i <= lineAmount; i++) {
-                        glVertex2f(
-                                x + (radius * cos(i *  twicePi / lineAmount)),
-                                y + (radius* sin(i * twicePi / lineAmount))
-                                );
-                }
-                glEnd();
-
-
-                // mercure
                 glPushMatrix();
-                glRotatef(_revolutionMercure,0,0,-1); // revolution
-                glRotatef(_rotationMercure,0,0,-1); //rotation
-                glTranslatef(2,0,0);
-                glScalef(0.3,0.3,0.3);
-                glColor3f(242,245,249);
-                glutSolidSphere(1, 20,10);
+                glRotatef(mercure._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(mercure._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(mercure._radius, 20,10);
+                glPopMatrix();
+                glPopMatrix();
+                /********************** VENUS **********************/
+                glPushMatrix();
+                glRotatef(venus._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(venus._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(venus._radius, 20,10);
+                glPopMatrix();
+                glPopMatrix();
+                /********************** TERRE **********************/
+                glPushMatrix();
+                glRotatef(venus._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(venus._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(venus._radius, 20,10);
                 glPopMatrix();
 
-
-                /********************** VENUS **********************/
-
-
-                glColor3d(255,255,255);
-
-                glBegin(GL_LINE_LOOP);
-                for(i = 0; i <= lineAmount; i++) {
-                        glVertex2f(
-                                x + (radius * cos(i *  twicePi / lineAmount)),
-                                y + (radius* sin(i * twicePi / lineAmount))
-                                );
-                }
-                glEnd();
-
-
+                //trace de la Lune avec comme centre de repere global la Terre
+                terre.traceLune();
+                glPopMatrix();
+                /********************** MARS **********************/
                 glPushMatrix();
-                glRotatef(_revolutionVenus,0,0,-1); // revolution
-                glRotatef(_rotationVenus,0,0,-1); //rotation
-                glTranslatef(3,0,0);
-                glScalef(0.5,0.5,0.5);
-                glColor3f(212,55,72);
-                glutSolidSphere(1, 20,10);
+                glRotatef(mars._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(mars._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(mars._radius, 20,10);
+                glPopMatrix();
+                glPopMatrix();
+                /********************** JUPITER **********************/
+                glPushMatrix();
+                glRotatef(jupiter._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(jupiter._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(jupiter._radius, 20,10);
+                glPopMatrix();
+                glPopMatrix();
+                /********************** SATURNE **********************/
+                glPushMatrix();
+                glRotatef(saturne._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(saturne._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(saturne._radius, 20,10);
+                glPopMatrix();
+                glPopMatrix();
+                /********************** URANUS **********************/
+                glPushMatrix();
+                glRotatef(uranus._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(uranus._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(uranus._radius, 20,10);
+                glPopMatrix();
+                glPopMatrix();
+                /********************** NEPTUNE **********************/
+                glPushMatrix();
+                glRotatef(neptune._orbit, 0.0, 1.0, 0.0);
+                glTranslatef(neptune._distance, 0.0, 0.0);
+                glColor3f(255,255,0);
+                glPushMatrix();
+                glRotatef(90.0, 1.0, 0.0, 0.0);
+                glutWireSphere(neptune._radius, 20,10);
+                glPopMatrix();
                 glPopMatrix();
 
                 break;
         }
 }
 
+
+/* =========== FONCTIONS UTILES POUR LE FICHIER MY_SCENE */
+//FIXME: encaplusation de la fonction animation
+void animation (Planet *p) {
+
+        // soleil.deplacementJour();
+        // mercure.deplacementJour();
+        // venus.deplacementJour();
+        // terre.deplacementJour();
+        // mars.deplacementJour();
+        // jupiter.deplacementJour();
+        // saturne.deplacementJour();
+        // uranus.deplacementJour();
+        // neptune.deplacementJour();
+
+        //p->deplacementJour();
+}
 
 /**
  * Slot set current object
@@ -246,6 +322,8 @@ void MyScene::slotSetRadius(double radius)
         }
 }
 
+
+
 /**
  * Process keyboard events for QGLViewer widget
  *
@@ -295,16 +373,54 @@ bool MyScene::keyPressEvent(QKeyEvent *e)
                 handled = true;
         }
 
+
+        //FIXME: revoir le modulo pour les révolutions
+        //FIXME: revoir la revolution des planetes
         // Increase rotation of the current displayed object with 'h'
         if ((e->key()==Qt::Key_Z) && (modifiers==Qt::NoButton)) {
-                std::cout << "Vous avez appuyez sur Z" << endl;
-                //this->_x += 1;
-                //this->_y += 1;
-                this->_revolutionMercure += 2;
-                this->_rotationMercure +=  4;
-                this->_revolutionVenus += 6;
-                this->_rotationVenus +=  7;
+                //std::cout << "Vous avez appuyez sur Z" << endl;
+
+                // soleil._orbit += soleil._orbitSpeed;
+                // mercure._orbit += mercure._orbitSpeed;
+                // venus._orbit += venus._orbitSpeed;
+                // terre._orbit += terre._orbitSpeed;
+                // mars._orbit += mars._orbitSpeed;
+                // jupiter._orbit += jupiter._orbitSpeed;
+                // saturne._orbit += saturne._orbitSpeed;
+                // uranus._orbit += uranus._orbitSpeed;
+                // neptune._orbit += neptune._orbitSpeed;
+                //
+                // if (soleil, mercure, venus, terre, mars, jupiter, saturne, uranus, neptune._orbit > 360.0)
+                //         soleil, mercure, venus, terre, mars, jupiter, saturne, uranus, neptune._orbit -= 360.0;
+
+
+
+                handled = true;
+
+                //fmod (_revolutionMercure, (360/87.97));
+                //this->_rotationMercure +=  4;
+
+                /*this->_revolutionMercure += fmod (_revolutionMercure, (360/87.97));
+                   this->_rotationMercure +=  4;
+                   this->_revolutionVenus += fmod(_revolutionVenus,(360/224.67));
+                   this->_rotationVenus +=  3;
+                   this->_revolutionTerre += fmod(_revolutionTerre,(360/365.25));
+                   this->_rotationTerre +=  2;
+
+                   this->_revolutionMars += fmod(_revolutionMars,(360/686.98));
+                   this->_rotationMars +=  6;
+                   this->_revolutionJupiter += fmod(_revolutionJupiter,(360/4332.58));
+                   this->_rotationJupiter +=  5;
+                   this->_revolutionSaturne += fmod(_revolutionSaturne,(360/10759.23));
+                   this->_rotationSaturne +=  7;
+                   this->_revolutionUranus += fmod(_revolutionUranus,(360/30685.4));
+                   this->_rotationUranus +=  9;
+                   this->_revolutionNeptune += fmod(_revolutionNeptune,(360/60266));
+                   this->_rotationNeptune +=  8;*/
+
         }
+
+        //TODO: fonction "util" qui des que la rotation depasse 360, remet à 0
 
 
 

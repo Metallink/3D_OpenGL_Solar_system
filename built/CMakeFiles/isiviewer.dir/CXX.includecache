@@ -197,6 +197,8 @@ my_scene.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_scene.cpp
 my_scene.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_scene.h
+planet.h
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planet.h
 iostream
 -
 math.h
@@ -213,6 +215,16 @@ QKeyEvent
 -
 my_objects.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_objects.h
+planet.h
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planet.h
+
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planet.h
+iostream
+-
+GL/gl.h
+-
+GL/glut.h
+-
 
 /usr/include/qt4/Qt3Support/q3cstring.h
 QtCore/qbytearray.h

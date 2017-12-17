@@ -15,6 +15,7 @@
 #include <QObject>
 #include <QKeyEvent>
 #include "my_objects.h"
+#include "planet.h"
 
 class MyScene : public QObject
 {
@@ -43,6 +44,18 @@ int _revolutionMercure;
 int _rotationMercure;
 int _revolutionVenus;
 int _rotationVenus;
+int _revolutionTerre;
+int _rotationTerre;
+int _revolutionMars;
+int _rotationMars;
+int _revolutionJupiter;
+int _rotationJupiter;
+int _revolutionSaturne;
+int _rotationSaturne;
+int _revolutionUranus;
+int _rotationUranus;
+int _revolutionNeptune;
+int _rotationNeptune;
 
 // Info for GUI
 double _radiusMin;
@@ -82,6 +95,7 @@ inline double radiusIncr(){
         return _radiusIncr;
 }
 
+
 void init();
 void draw();
 
@@ -97,6 +111,7 @@ void slotSetRadius(double radius);
 
 public:
 bool keyPressEvent(QKeyEvent *e);
+void animation ();
 
 
 };
