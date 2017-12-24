@@ -1,5 +1,6 @@
 #include "my_scene.h"
-#include "imageloader.h"
+#include "texture.h"
+#include "planete.h"
 
 #include <iostream>
 #include <math.h>
@@ -8,103 +9,57 @@
 
 using namespace std;
 
+/*****************************************************/
+/**              VARIABLES GLOBALES                 **/
+/*****************************************************/
+//double
 
-class Planet {
-public:
-float radius, distance, orbit, orbitSpeed, axisTilt, axisAni;
-Planet(float _radius, float _distance, float _orbit, float _orbitSpeed, float _axisTilt, float _axisAni){
-        radius = _radius;
-        distance = _distance;
-        orbit = _orbit;
-        orbitSpeed = _orbitSpeed;
-        axisTilt = _axisTilt;
-        axisAni = _axisAni;
-}
+/*****************************************************/
+/**       INITIALISATION DES OBJETS "PLANETE"       **/
+/*****************************************************/
+/* Les dimensions des planeetes ont été respecté sauf pour le soleil en se basant sur les diametres de la maquette du lien fourni dans le sujet.*/
+/* De plus, les distances n'ont pas été respecté comme specifié dans le sujet. J'ai fait en sorte que les planetes soient equidistantes.*/
 
-void drawSmallOrbit(void){
+/* RAPPEL CONSTRUCTEUR DE LA CLASSE PLANETE */
+/*Planete(double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni); */
+
+Planete *sun = new Planete (RADIUS_SOLEIL, DISTANCE_SOLEIL, 0, 0, 0, 0); // radius du soleil non respecté sinon beaucoup trop grand par rapport aux autres planetes
+Planete *mer = new Planete (RADIUS_MERCURE, DISTANCE_MERCURE, 0, 4.74, 02.11, 0);
+Planete *ven = new Planete (RADIUS_VENUS, DISTANCE_VENUS, 0, 3.50, 177.0, 0);
+Planete *ear = new Planete (RADIUS_TERRE, DISTANCE_TERRE, 0, 2.98, 23.44, 0);
+Planete *lun = new Planete (RADIUS_LUNE, DISTANCE_LUNE, 0, 5.40, 0, 0);
+Planete *mar = new Planete (RADIUS_MARS, DISTANCE_MARS, 0, 2.41, 25.00, 0);
+Planete *jup = new Planete (RADIUS_JUPITER, DISTANCE_JUPITER, 0, 1.31, 03.13, 0);
+Planete *sat = new Planete (RADIUS_SATURNE, DISTANCE_SATURNE, 0, 0.97, 26.70, 0);
+Planete *ura = new Planete (RADIUS_URANUS, DISTANCE_URANUS, 0, 0.68, 97.77, 0);
+Planete *nep = new Planete (RADIUS_NEPTUNE, DISTANCE_NEPTUNE, 0, 0.54, 28.32, 0);
+
+
+//FIXME: essayer d'utiliser la fonction dessinerOrbite de planete.cpp au lieu de cette merde
+void MyScene::orbitalTrails() {
         glPushMatrix();
         glColor3ub(255, 255, 255);
-        glRotatef(90.0, 1.0, 0.0, 0.0);
-        glutWireTorus(0.001, distance, 100.0, 100.0);
+        glRotated(90.0, 1.0, 0.0, 0.0);
+        glutWireTorus(0.001, mer->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, ven->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, ear->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, mar->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, jup->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, sat->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, ura->getDistance(), 100.0, 100.0);
+        glutWireTorus(0.001, nep->getDistance(), 100.0, 100.0);
         glPopMatrix();
 }
 
-void drawMoon(void){
-        GLUquadricObj *quadric;
-        quadric = gluNewQuadric();
-        glPushMatrix();
-        glColor3ub(255, 255, 255);
-        glRotatef(orbit, 0.0, 1.0, 0.0);
-        glTranslatef(distance, 0.0, 0.0);
-        gluSphere(quadric, radius, 20.0, 20.0);
-        glPopMatrix();
-}
-
-};
-
-//Sun, Planets and Stars
-Planet sun(5.0, 0, 0, 0, 0, 0);    //Sun
-Planet mer(1.0, 7, 0, 4.74, 02.11, 0);  //Mercury
-Planet ven(1.5, 11, 0, 3.50, 177.0, 0);  //Venus
-Planet ear(2.0, 16, 0, 2.98, 23.44, 0);  //Earth
-Planet mar(1.2, 21, 0, 2.41, 25.00, 0);  //Mars
-Planet jup(3.5, 28, 0, 1.31, 03.13, 0);  //Jupiter
-Planet sat(3.0, 37, 0, 0.97, 26.70, 0);  //Saturn
-Planet ura(2.5, 45.5, 0, 0.68, 97.77, 0); //Uranus
-Planet nep(2.3, 53.6, 0, 0.54, 28.32, 0); //Neptune
-Planet lun(.40, 3, 0, 5.40, 0, 0);   //Luna     (Earth)
-
-
-int isAnimate = 0;
+// variables globales
 int bigOrbitActive = 1;
 int smallOrbitActive = 1;
 int moonsActive = 1;
 int changeCamera = 0;
-int frameCount = 0;
-int labelsActive = 0;
-int zoom = 50;
-int logoScene = 1;
 
 GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, pluTexture, staTexture, logTexture;
 
-GLuint loadTexture(Image* image) {
-        //http://www.codeincodeblock.com/2012/05/simple-method-for-texture-mapping-on.html
-        GLuint textureId;
-        glGenTextures(1, &textureId);
-        glBindTexture(GL_TEXTURE_2D, textureId);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
-        return textureId;
-}
 
-void animate(int n){
-        if (isAnimate) {
-                mer.orbit += mer.orbitSpeed;
-                ven.orbit += ven.orbitSpeed;
-                ear.orbit += ear.orbitSpeed;
-                mar.orbit += mar.orbitSpeed;
-                jup.orbit += jup.orbitSpeed;
-                sat.orbit += sat.orbitSpeed;
-                ura.orbit += ura.orbitSpeed;
-                nep.orbit += nep.orbitSpeed;
-                lun.orbit += lun.orbitSpeed;
-                if (mer, ven, ear, mar, jup, sat, ura, nep, lun.orbit > 360.0) {
-                        mer, ven, ear, mar, jup, sat, ura, nep, lun.orbit -= 360.0;
-                }
-                mer.axisAni += 10.0;
-                ven.axisAni += 10.0;
-                ear.axisAni += 10.0;
-                mar.axisAni += 10.0;
-                jup.axisAni += 10.0;
-                sat.axisAni += 10.0;
-                ura.axisAni += 10.0;
-                nep.axisAni += 10.0;
-                if (mer, ven, ear, mar, jup, sat, ura, nep.axisAni > 360.0) {
-                        mer, ven, ear, mar, jup, sat, ura, nep.axisAni -= 360.0;
-                }
-                //glutPostRedisplay();
-                //glutTimerFunc(30, animate, 1);
-        }
-}
 
 /**
  * Constructor
@@ -123,7 +78,7 @@ MyScene::MyScene(float radius)
         _radius = radius;
 
         _radiusMin = 0.1;
-        _radiusMax = 1000.0;
+        _radiusMax = 10.0;
         _radiusIncr = 0.1;
 }
 
@@ -151,23 +106,73 @@ void MyScene::init()
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         glLineWidth(1.5);
 
-        glClearColor(0.0, 0.0, 0.0, 0.0);
+        //glColor3ub(0,0,0);
+        glClearColor(0.0, 0.0, 0.0, 0.0);  // raz les couleurs et colorise tout en noir
         glEnable(GL_NORMALIZE); // normalize normal vectors when objects are scaled
         glEnable(GL_COLOR_MATERIAL);
-        Image *soleil = loadBMP("../isiviewer_glut/textures/soleil.bmp");
-        sunTexture = loadTexture(soleil);
+
+
+        /*****************************************************/
+        /**             CHARGEMENT DES TEXTURES             **/
+        /*****************************************************/
+
+        //Texture *sta = readBMP("../isiviewer_glut/textures/espace.bmp");  staTexture = loadTexture(sta);  delete sta;
+        Texture *soleil = new Texture();
+        soleil->readBMP(SOLEIL_FICHIER_BMP);
+        sunTexture = soleil->loadTexture();
         delete soleil;
 
+        Texture *mercure = new Texture();
+        mercure->readBMP(MERCURE_FICHIER_BMP);
+        merTexture = mercure->loadTexture();
+        delete mercure;
 
-        Image* sta = loadBMP("../isiviewer_glut/textures/espace.bmp");  staTexture = loadTexture(sta);  delete sta;
-        Image* mer = loadBMP("../isiviewer_glut/textures/mercure.bmp"); merTexture = loadTexture(mer);  delete mer;
-        Image* ven = loadBMP("../isiviewer_glut/textures/venus.bmp");  venTexture = loadTexture(ven);  delete ven;
-        Image* ear = loadBMP("../isiviewer_glut/textures/terre.bmp");  earTexture = loadTexture(ear);  delete ear;
-        Image* mar = loadBMP("../isiviewer_glut/textures/mars.bmp");  marTexture = loadTexture(mar);  delete mar;
-        Image* jup = loadBMP("../isiviewer_glut/textures/jupiter.bmp"); jupTexture = loadTexture(jup);  delete jup;
-        Image* sat = loadBMP("../isiviewer_glut/textures/saturne.bmp");  satTexture = loadTexture(sat);  delete sat;
-        Image* ura = loadBMP("../isiviewer_glut/textures/uranus.bmp");  uraTexture = loadTexture(ura);  delete ura;
-        Image* nep = loadBMP("../isiviewer_glut/textures/neptune.bmp"); nepTexture = loadTexture(nep);  delete nep;
+        Texture *venus = new Texture();
+        venus->readBMP(VENUS_FICHIER_BMP);
+        venTexture = venus->loadTexture();
+        delete venus;
+
+        Texture *terre = new Texture();
+        terre->readBMP(TERRE_FICHIER_BMP);
+        earTexture = terre->loadTexture();
+        delete terre;
+
+        Texture *mars = new Texture();
+        mars->readBMP(MARS_FICHIER_BMP);
+        marTexture = mars->loadTexture();
+        delete mars;
+
+        Texture *jupiter = new Texture();
+        jupiter->readBMP(JUPITER_FICHIER_BMP);
+        jupTexture = jupiter->loadTexture();
+        delete jupiter;
+
+        Texture *saturne = new Texture();
+        saturne->readBMP(SATURNE_FICHIER_BMP);
+        satTexture = saturne->loadTexture();
+        delete saturne;
+
+        Texture *uranus = new Texture();
+        uranus->readBMP(URANUS_FICHIER_BMP);
+        uraTexture = uranus->loadTexture();
+        delete uranus;
+
+        Texture *neptune = new Texture();
+        neptune->readBMP(NEPTUNE_FICHIER_BMP);
+        nepTexture = neptune->loadTexture();
+        delete neptune;
+
+        //NOTE:FONCTIONNELLE
+        // Texture *soleil = readBMP("../isiviewer_glut/textures/soleil.bmp"); sunTexture = loadTexture(soleil); delete soleil;
+        // Texture *sta = readBMP("../isiviewer_glut/textures/espace.bmp");  staTexture = loadTexture(sta);  delete sta;
+        // Texture *mer = readBMP("../isiviewer_glut/textures/mercure.bmp"); merTexture = loadTexture(mer);  delete mer;
+        // Texture *ven = readBMP("../isiviewer_glut/textures/venus.bmp");  venTexture = loadTexture(ven);  delete ven;
+        // Texture *ear = readBMP("../isiviewer_glut/textures/terre.bmp");  earTexture = loadTexture(ear);  delete ear;
+        // Texture *mar = readBMP("../isiviewer_glut/textures/mars.bmp");  marTexture = loadTexture(mar);  delete mar;
+        // Texture *jup = readBMP("../isiviewer_glut/textures/jupiter.bmp"); jupTexture = loadTexture(jup);  delete jup;
+        // Texture *sat = readBMP("../isiviewer_glut/textures/saturne.bmp");  satTexture = loadTexture(sat);  delete sat;
+        // Texture *ura = readBMP("../isiviewer_glut/textures/uranus.bmp");  uraTexture = loadTexture(ura);  delete ura;
+        // Texture *nep = readBMP("../isiviewer_glut/textures/neptune.bmp"); nepTexture = loadTexture(nep);  delete nep;
 
 }
 
@@ -178,15 +183,24 @@ void MyScene::init()
 void MyScene::draw()
 {
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
         GLUquadric *quadric;
         quadric = gluNewQuadric();
 
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        //glLoadIdentity();
-
         glPushMatrix();
-        glScalef(_radius/2, _radius/2, _radius/2);
+        glScalef(_radius/10, _radius/10, _radius/10);
+
+        // glRotated(90.0, 1.0, 0.0, 0.0);
+        // glutWireTorus(0.001, mer->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, ven->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, ear->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, mar->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, jup->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, sat->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, ura->getDistance(), 100.0, 100.0);
+        // glutWireTorus(0.001, nep->getDistance(), 100.0, 100.0);
 
         switch(_currentObject%_numberOfObjects) {
         case MyScene::CUBE: // Draw the cube
@@ -215,6 +229,7 @@ void MyScene::draw()
 
         case MyScene::SOLARSYSTEM:
 
+
                 //... insert here the other objects
 
                 // Sun
@@ -231,19 +246,24 @@ void MyScene::draw()
 
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(sun.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(sun.distance, 0.0, 0.0);
+                glRotatef(sun->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(sun->getDistance(), 0.0, 0.0);
+
+                /*****************************************************/
+                /**       ON AFFICHE LES ORBITES DES PLANETES       **/
+                /*****************************************************/
+                orbitalTrails();
 
                 glPushMatrix();
-                glRotatef(sun.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(sun.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(sun->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(sun->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, sunTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, sun.radius, 20.0, 20.0);
+                gluSphere(quadric, sun->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -256,21 +276,22 @@ void MyScene::draw()
                 // glTranslatef(7,0,0);
                 // glutSolidSphere(1, 20,10);
                 // glPopMatrix();
-                glPushMatrix();
-                glScalef(0.1,0.1,0.1);
-                glRotatef(mer.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(mer.distance, 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(mer.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(mer.axisAni, 0.0, 1.0, 0.0);
+                glScalef(0.1,0.1,0.1);
+                glRotatef(mer->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(mer->getDistance(), 0.0, 0.0);
+
+                glPushMatrix();
+                glRotatef(mer->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(mer->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, merTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, mer.radius, 20.0, 20.0);
+                gluSphere(quadric, mer->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -278,19 +299,19 @@ void MyScene::draw()
                 //Venus
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(ven.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(ven.distance, 0.0, 0.0);
+                glRotatef(ven->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(ven->getDistance(), 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(ven.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(ven.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(ven->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(ven->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, venTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, ven.radius, 20.0, 20.0);
+                gluSphere(quadric, ven->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -298,41 +319,41 @@ void MyScene::draw()
                 //Earth, Orbit, Moon
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(ear.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(ear.distance, 0.0, 0.0);
+                glRotatef(ear->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(ear->getDistance(), 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(ear.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(ear.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(ear->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(ear->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, earTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, ear.radius, 20.0, 20.0);
+                gluSphere(quadric, ear->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 // lune
-                lun.drawMoon();
+                lun->drawMoon();
                 glPopMatrix();
 
                 //Mars, Orbits, Moons
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(mar.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(mar.distance, 0.0, 0.0);
+                glRotatef(mar->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(mar->getDistance(), 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(mar.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(mar.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(mar->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(mar->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, marTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, mar.radius, 20.0, 20.0);
+                gluSphere(quadric, mar->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -340,19 +361,19 @@ void MyScene::draw()
                 //Jupiter, Orbits, Moons
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(jup.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(jup.distance, 0.0, 0.0);
+                glRotatef(jup->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(jup->getDistance(), 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(jup.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(jup.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(jup->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(jup->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, jupTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, jup.radius, 20.0, 20.0);
+                gluSphere(quadric, jup->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -360,18 +381,18 @@ void MyScene::draw()
                 //Saturn, Orbit, Moon
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(sat.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(sat.distance, 0.0, 0.0);
+                glRotatef(sat->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(sat->getDistance(), 0.0, 0.0);
                 glPushMatrix();
-                glRotatef(sat.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(sat.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(sat->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(sat->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, satTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, sat.radius, 20.0, 20.0);
+                gluSphere(quadric, sat->getRadius(), 20.0, 20.0);
                 glPopMatrix();
                 glDisable(GL_TEXTURE_2D);
                 glPushMatrix();
@@ -387,19 +408,19 @@ void MyScene::draw()
                 //Uranus, Orbit, Moon
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(ura.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(ura.distance, 0.0, 0.0);
+                glRotatef(ura->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(ura->getDistance(), 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(ura.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(ura.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(ura->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(ura->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, uraTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, ura.radius, 20.0, 20.0);
+                gluSphere(quadric, ura->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -407,19 +428,19 @@ void MyScene::draw()
                 //Neptune, Orbit, Moon
                 glPushMatrix();
                 glScalef(0.1,0.1,0.1);
-                glRotatef(nep.orbit, 0.0, 1.0, 0.0);
-                glTranslatef(nep.distance, 0.0, 0.0);
+                glRotatef(nep->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(nep->getDistance(), 0.0, 0.0);
 
                 glPushMatrix();
-                glRotatef(nep.axisTilt, 1.0, 0.0, 0.0);
-                glRotatef(nep.axisAni, 0.0, 1.0, 0.0);
+                glRotatef(nep->getAxisTilt(), 1.0, 0.0, 0.0);
+                glRotatef(nep->getAxisAni(), 0.0, 1.0, 0.0);
                 glRotatef(90.0, 1.0, 0.0, 0.0);
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, nepTexture);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 gluQuadricTexture(quadric, 1);
-                gluSphere(quadric, nep.radius, 20.0, 20.0);
+                gluSphere(quadric, nep->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
@@ -438,14 +459,6 @@ void MyScene::draw()
                 // gluSphere(quadric, 30, 20.0, 20.0);
                 // glDisable(GL_TEXTURE_2D);
                 // glPopMatrix();
-
-                // glPushMatrix();
-                // glScalef(0.1,0.1,0.1);
-                // glRotatef(360,0,1,0);
-                // glTranslatef(11,0,0);
-                // glutSolidSphere(1.5, 20,10);
-                // glPopMatrix();
-
         }
 
         glPopMatrix();
@@ -560,8 +573,18 @@ bool MyScene::keyPressEvent(QKeyEvent *e)
         }
         // change displau mode with 'z'
         else if ((e->key()==Qt::Key_Z) && (modifiers==Qt::NoButton)) {
-                if (isAnimate) isAnimate = 0;
-                else{ isAnimate = 1; animate(1); };
+
+                sun->animate();
+                mer->animate();
+                ven->animate();
+                ear->animate();
+                mar->animate();
+                jup->animate();
+                sat->animate();
+                ura->animate();
+                nep->animate();
+                lun->animate();
+
         }
 
 

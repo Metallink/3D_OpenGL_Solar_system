@@ -18,11 +18,9 @@ qt4_wrap_ui(UIC_OUT ${UIC_IN})
 set(MOC_IN my_main_window.h my_scene.h)
 qt4_wrap_cpp(MOC_OUT ${MOC_IN})
 
-set(SOURCES ${UIC_OUT} ${MOC_OUT} 
-  main.cpp  my_main_window.cpp  my_objects.cpp  my_qglviewer.cpp  my_scene.cpp imageloader.cpp)
+set(SOURCES ${UIC_OUT} ${MOC_OUT}
+  main.cpp  my_main_window.cpp  my_objects.cpp  my_qglviewer.cpp  my_scene.cpp planete.cpp texture.cpp)
 
 add_executable(isiviewer ${SOURCES})
 
-target_link_libraries (isiviewer GLEW QGLViewer glut ${QT_LIBRARIES} ${OPENGL_LIBRARIES}) 
-
-
+target_link_libraries (isiviewer GLEW QGLViewer glut ${QT_LIBRARIES} ${OPENGL_LIBRARIES})

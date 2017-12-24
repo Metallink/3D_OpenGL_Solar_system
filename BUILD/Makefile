@@ -123,33 +123,6 @@ isiviewer/fast:
 	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/build
 .PHONY : isiviewer/fast
 
-imageloader.o: imageloader.cpp.o
-
-.PHONY : imageloader.o
-
-# target to build an object file
-imageloader.cpp.o:
-	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/imageloader.cpp.o
-.PHONY : imageloader.cpp.o
-
-imageloader.i: imageloader.cpp.i
-
-.PHONY : imageloader.i
-
-# target to preprocess a source file
-imageloader.cpp.i:
-	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/imageloader.cpp.i
-.PHONY : imageloader.cpp.i
-
-imageloader.s: imageloader.cpp.s
-
-.PHONY : imageloader.s
-
-# target to generate assembly for a file
-imageloader.cpp.s:
-	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/imageloader.cpp.s
-.PHONY : imageloader.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -339,6 +312,60 @@ my_scene.cpp.s:
 	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/my_scene.cpp.s
 .PHONY : my_scene.cpp.s
 
+planete.o: planete.cpp.o
+
+.PHONY : planete.o
+
+# target to build an object file
+planete.cpp.o:
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/planete.cpp.o
+.PHONY : planete.cpp.o
+
+planete.i: planete.cpp.i
+
+.PHONY : planete.i
+
+# target to preprocess a source file
+planete.cpp.i:
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/planete.cpp.i
+.PHONY : planete.cpp.i
+
+planete.s: planete.cpp.s
+
+.PHONY : planete.s
+
+# target to generate assembly for a file
+planete.cpp.s:
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/planete.cpp.s
+.PHONY : planete.cpp.s
+
+texture.o: texture.cpp.o
+
+.PHONY : texture.o
+
+# target to build an object file
+texture.cpp.o:
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/texture.cpp.o
+.PHONY : texture.cpp.o
+
+texture.i: texture.cpp.i
+
+.PHONY : texture.i
+
+# target to preprocess a source file
+texture.cpp.i:
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/texture.cpp.i
+.PHONY : texture.cpp.i
+
+texture.s: texture.cpp.s
+
+.PHONY : texture.s
+
+# target to generate assembly for a file
+texture.cpp.s:
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/texture.cpp.s
+.PHONY : texture.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -348,9 +375,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... isiviewer"
-	@echo "... imageloader.o"
-	@echo "... imageloader.i"
-	@echo "... imageloader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -372,6 +396,12 @@ help:
 	@echo "... my_scene.o"
 	@echo "... my_scene.i"
 	@echo "... my_scene.s"
+	@echo "... planete.o"
+	@echo "... planete.i"
+	@echo "... planete.s"
+	@echo "... texture.o"
+	@echo "... texture.i"
+	@echo "... texture.s"
 .PHONY : help
 
 

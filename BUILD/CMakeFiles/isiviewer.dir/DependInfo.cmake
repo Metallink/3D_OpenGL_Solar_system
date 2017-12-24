@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/imageloader.cpp.o"
   "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/main.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/main.cpp.o"
   "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/moc_my_main_window.cxx" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/moc_my_main_window.cxx.o"
   "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/moc_my_scene.cxx" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/moc_my_scene.cxx.o"
@@ -12,6 +11,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_objects.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/my_objects.cpp.o"
   "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_qglviewer.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/my_qglviewer.cpp.o"
   "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_scene.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/my_scene.cpp.o"
+  "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/planete.cpp.o"
+  "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.cpp" "/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles/isiviewer.dir/texture.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

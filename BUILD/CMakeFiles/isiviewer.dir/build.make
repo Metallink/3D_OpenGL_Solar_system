@@ -239,28 +239,52 @@ CMakeFiles/isiviewer.dir/my_scene.cpp.o.provides: CMakeFiles/isiviewer.dir/my_sc
 CMakeFiles/isiviewer.dir/my_scene.cpp.o.provides.build: CMakeFiles/isiviewer.dir/my_scene.cpp.o
 
 
-CMakeFiles/isiviewer.dir/imageloader.cpp.o: CMakeFiles/isiviewer.dir/flags.make
-CMakeFiles/isiviewer.dir/imageloader.cpp.o: /home/shinji/Documents/MASTER\ TI/ISI/TP\ 3/isiviewer_glut/imageloader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/isiviewer.dir/imageloader.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/isiviewer.dir/imageloader.cpp.o -c "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.cpp"
+CMakeFiles/isiviewer.dir/planete.cpp.o: CMakeFiles/isiviewer.dir/flags.make
+CMakeFiles/isiviewer.dir/planete.cpp.o: /home/shinji/Documents/MASTER\ TI/ISI/TP\ 3/isiviewer_glut/planete.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/isiviewer.dir/planete.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/isiviewer.dir/planete.cpp.o -c "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.cpp"
 
-CMakeFiles/isiviewer.dir/imageloader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/isiviewer.dir/imageloader.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.cpp" > CMakeFiles/isiviewer.dir/imageloader.cpp.i
+CMakeFiles/isiviewer.dir/planete.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/isiviewer.dir/planete.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.cpp" > CMakeFiles/isiviewer.dir/planete.cpp.i
 
-CMakeFiles/isiviewer.dir/imageloader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/isiviewer.dir/imageloader.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.cpp" -o CMakeFiles/isiviewer.dir/imageloader.cpp.s
+CMakeFiles/isiviewer.dir/planete.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/isiviewer.dir/planete.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.cpp" -o CMakeFiles/isiviewer.dir/planete.cpp.s
 
-CMakeFiles/isiviewer.dir/imageloader.cpp.o.requires:
+CMakeFiles/isiviewer.dir/planete.cpp.o.requires:
 
-.PHONY : CMakeFiles/isiviewer.dir/imageloader.cpp.o.requires
+.PHONY : CMakeFiles/isiviewer.dir/planete.cpp.o.requires
 
-CMakeFiles/isiviewer.dir/imageloader.cpp.o.provides: CMakeFiles/isiviewer.dir/imageloader.cpp.o.requires
-	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/imageloader.cpp.o.provides.build
-.PHONY : CMakeFiles/isiviewer.dir/imageloader.cpp.o.provides
+CMakeFiles/isiviewer.dir/planete.cpp.o.provides: CMakeFiles/isiviewer.dir/planete.cpp.o.requires
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/planete.cpp.o.provides.build
+.PHONY : CMakeFiles/isiviewer.dir/planete.cpp.o.provides
 
-CMakeFiles/isiviewer.dir/imageloader.cpp.o.provides.build: CMakeFiles/isiviewer.dir/imageloader.cpp.o
+CMakeFiles/isiviewer.dir/planete.cpp.o.provides.build: CMakeFiles/isiviewer.dir/planete.cpp.o
+
+
+CMakeFiles/isiviewer.dir/texture.cpp.o: CMakeFiles/isiviewer.dir/flags.make
+CMakeFiles/isiviewer.dir/texture.cpp.o: /home/shinji/Documents/MASTER\ TI/ISI/TP\ 3/isiviewer_glut/texture.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/isiviewer.dir/texture.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/isiviewer.dir/texture.cpp.o -c "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.cpp"
+
+CMakeFiles/isiviewer.dir/texture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/isiviewer.dir/texture.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.cpp" > CMakeFiles/isiviewer.dir/texture.cpp.i
+
+CMakeFiles/isiviewer.dir/texture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/isiviewer.dir/texture.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.cpp" -o CMakeFiles/isiviewer.dir/texture.cpp.s
+
+CMakeFiles/isiviewer.dir/texture.cpp.o.requires:
+
+.PHONY : CMakeFiles/isiviewer.dir/texture.cpp.o.requires
+
+CMakeFiles/isiviewer.dir/texture.cpp.o.provides: CMakeFiles/isiviewer.dir/texture.cpp.o.requires
+	$(MAKE) -f CMakeFiles/isiviewer.dir/build.make CMakeFiles/isiviewer.dir/texture.cpp.o.provides.build
+.PHONY : CMakeFiles/isiviewer.dir/texture.cpp.o.provides
+
+CMakeFiles/isiviewer.dir/texture.cpp.o.provides.build: CMakeFiles/isiviewer.dir/texture.cpp.o
 
 
 # Object files for target isiviewer
@@ -272,7 +296,8 @@ isiviewer_OBJECTS = \
 "CMakeFiles/isiviewer.dir/my_objects.cpp.o" \
 "CMakeFiles/isiviewer.dir/my_qglviewer.cpp.o" \
 "CMakeFiles/isiviewer.dir/my_scene.cpp.o" \
-"CMakeFiles/isiviewer.dir/imageloader.cpp.o"
+"CMakeFiles/isiviewer.dir/planete.cpp.o" \
+"CMakeFiles/isiviewer.dir/texture.cpp.o"
 
 # External object files for target isiviewer
 isiviewer_EXTERNAL_OBJECTS =
@@ -284,7 +309,8 @@ isiviewer: CMakeFiles/isiviewer.dir/my_main_window.cpp.o
 isiviewer: CMakeFiles/isiviewer.dir/my_objects.cpp.o
 isiviewer: CMakeFiles/isiviewer.dir/my_qglviewer.cpp.o
 isiviewer: CMakeFiles/isiviewer.dir/my_scene.cpp.o
-isiviewer: CMakeFiles/isiviewer.dir/imageloader.cpp.o
+isiviewer: CMakeFiles/isiviewer.dir/planete.cpp.o
+isiviewer: CMakeFiles/isiviewer.dir/texture.cpp.o
 isiviewer: CMakeFiles/isiviewer.dir/build.make
 isiviewer: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
 isiviewer: /usr/lib/x86_64-linux-gnu/libQtGui.so
@@ -293,7 +319,7 @@ isiviewer: /usr/lib/x86_64-linux-gnu/libQtCore.so
 isiviewer: /usr/lib/x86_64-linux-gnu/libGLU.so
 isiviewer: /usr/lib/x86_64-linux-gnu/libGL.so
 isiviewer: CMakeFiles/isiviewer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable isiviewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable isiviewer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/isiviewer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -308,7 +334,8 @@ CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/my_main_window.cpp.o
 CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/my_objects.cpp.o.requires
 CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/my_qglviewer.cpp.o.requires
 CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/my_scene.cpp.o.requires
-CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/imageloader.cpp.o.requires
+CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/planete.cpp.o.requires
+CMakeFiles/isiviewer.dir/requires: CMakeFiles/isiviewer.dir/texture.cpp.o.requires
 
 .PHONY : CMakeFiles/isiviewer.dir/requires
 

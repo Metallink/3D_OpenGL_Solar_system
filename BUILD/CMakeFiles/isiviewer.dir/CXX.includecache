@@ -140,16 +140,6 @@ cmath
 ./core/_swizzle.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/glm-0.4.1/glm/./core/_swizzle.h
 
-/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.cpp
-assert.h
--
-fstream
--
-imageloader.h
-/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.h
-
-/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.h
-
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/main.cpp
 QApplication
 -
@@ -207,8 +197,10 @@ my_scene.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_scene.cpp
 my_scene.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_scene.h
-imageloader.h
-/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/imageloader.h
+texture.h
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.h
+planete.h
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.h
 iostream
 -
 math.h
@@ -225,6 +217,38 @@ QKeyEvent
 -
 my_objects.h
 /home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_objects.h
+
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.cpp
+planete.h
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.h
+math.h
+-
+iostream
+-
+GL/gl.h
+-
+GL/glut.h
+-
+
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/planete.h
+
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.cpp
+assert.h
+-
+fstream
+-
+GL/gl.h
+-
+GL/glut.h
+-
+texture.h
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.h
+
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/texture.h
+GL/gl.h
+-
+GL/glut.h
+-
 
 /usr/include/qt4/Qt3Support/q3cstring.h
 QtCore/qbytearray.h

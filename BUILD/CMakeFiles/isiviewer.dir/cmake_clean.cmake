@@ -9,7 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/isiviewer.dir/my_objects.cpp.o"
   "CMakeFiles/isiviewer.dir/my_qglviewer.cpp.o"
   "CMakeFiles/isiviewer.dir/my_scene.cpp.o"
-  "CMakeFiles/isiviewer.dir/imageloader.cpp.o"
+  "CMakeFiles/isiviewer.dir/planete.cpp.o"
+  "CMakeFiles/isiviewer.dir/texture.cpp.o"
   "isiviewer.pdb"
   "isiviewer"
 )
