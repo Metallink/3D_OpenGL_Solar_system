@@ -1,0 +1,40 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glmext-im", "glmext-im.vcproj", "{4078D0C0-C254-48D8-812E-3E1607082598}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glmext-va", "glmext-va.vcproj", "{176D187F-5634-4594-ACBE-F06C19293BAC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glm-im", "glm-im.vcproj", "{57EEA620-1E5B-485D-8D8D-F5ECF6A95679}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glm-va", "glm-va.vcproj", "{00EE3465-FB4F-4EE5-B511-DF70B2024016}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4078D0C0-C254-48D8-812E-3E1607082598}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4078D0C0-C254-48D8-812E-3E1607082598}.Debug|Win32.Build.0 = Debug|Win32
+		{4078D0C0-C254-48D8-812E-3E1607082598}.Release|Win32.ActiveCfg = Release|Win32
+		{4078D0C0-C254-48D8-812E-3E1607082598}.Release|Win32.Build.0 = Release|Win32
+		{176D187F-5634-4594-ACBE-F06C19293BAC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{176D187F-5634-4594-ACBE-F06C19293BAC}.Debug|Win32.Build.0 = Debug|Win32
+		{176D187F-5634-4594-ACBE-F06C19293BAC}.Release|Win32.ActiveCfg = Release|Win32
+		{176D187F-5634-4594-ACBE-F06C19293BAC}.Release|Win32.Build.0 = Release|Win32
+		{57EEA620-1E5B-485D-8D8D-F5ECF6A95679}.Debug|Win32.ActiveCfg = Debug|Win32
+		{57EEA620-1E5B-485D-8D8D-F5ECF6A95679}.Debug|Win32.Build.0 = Debug|Win32
+		{57EEA620-1E5B-485D-8D8D-F5ECF6A95679}.Release|Win32.ActiveCfg = Release|Win32
+		{57EEA620-1E5B-485D-8D8D-F5ECF6A95679}.Release|Win32.Build.0 = Release|Win32
+		{00EE3465-FB4F-4EE5-B511-DF70B2024016}.Debug|Win32.ActiveCfg = Debug|Win32
+		{00EE3465-FB4F-4EE5-B511-DF70B2024016}.Debug|Win32.Build.0 = Debug|Win32
+		{00EE3465-FB4F-4EE5-B511-DF70B2024016}.Release|Win32.ActiveCfg = Release|Win32
+		{00EE3465-FB4F-4EE5-B511-DF70B2024016}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal

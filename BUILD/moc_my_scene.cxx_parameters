@@ -1,0 +1,16 @@
+-I/usr/include/qt4
+-I/usr/include/qt4/QtOpenGL
+-I/usr/include/qt4/QtGui
+-I/usr/include/qt4/QtXml
+-I/usr/include/qt4/QtCore
+-I/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/glm-0.4.1
+-I/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut
+-I/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD
+-D$<$<NOT:$<CONFIG:Debug>>:QT_NO_DEBUG>
+-DQT_OPENGL_LIB
+-DQT_GUI_LIB
+-DQT_XML_LIB
+-DQT_CORE_LIB
+-o
+/home/shinji/Documents/MASTER TI/ISI/TP 3/BUILD/moc_my_scene.cxx
+/home/shinji/Documents/MASTER TI/ISI/TP 3/isiviewer_glut/my_scene.h

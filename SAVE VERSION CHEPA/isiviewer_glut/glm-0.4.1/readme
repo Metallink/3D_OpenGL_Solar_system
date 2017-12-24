@@ -1,0 +1,53 @@
+============================================================================
+GLM 0.4.1 : 2006-05-22
+----------------------------------------------------------------------------
+- Added OpenGL examples
+
+============================================================================
+GLM 0.4.0 : 2006-05-17
+----------------------------------------------------------------------------
+- Added missing operators to vec* and mat*
+- Added first GLSL 1.2 features
+- Fixed windows.h before glm.h when windows.h required
+
+============================================================================
+GLM 0.3.2 : 2006-04-21
+----------------------------------------------------------------------------
+- Fixed texcoord components access.
+- Fixed mat4 and imat4 division operators.
+
+============================================================================
+GLM 0.3.1 : 2006-03-28
+----------------------------------------------------------------------------
+- Added GCC 4.0 support under MacOS X.
+- Added GCC 4.0 and 4.1 support under Linux.
+- Added code optimisations.
+
+============================================================================
+GLM 0.3 : 2006-02-19
+----------------------------------------------------------------------------
+- Improved GLSL type conversion and construction compliance.
+- Added experimental extensions.
+- Added Doxygen Documentation.
+- Added code optimisations.
+- Fixed bugs.
+
+============================================================================
+GLM 0.2: 2005-05-05
+----------------------------------------------------------------------------
+- Improve adaptative from GLSL.
+- Add experimental extensions based on OpenGL extension process.
+- Fixe bugs.
+
+============================================================================
+GLM 0.1: 2005-02-21
+----------------------------------------------------------------------------
+- Add vec2, vec3, vec4 GLSL types
+- Add ivec2, ivec3, ivec4 GLSL types
+- Add bvec2, bvec3, bvec4 GLSL types
+- Add mat2, mat3, mat4 GLSL types
+- Add almost all functions
+
+============================================================================
+Christophe [Groove] Riccio, contact [at] g-truc [point] net)
+
