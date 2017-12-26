@@ -2,6 +2,8 @@
 #ifndef PLANETE_H
 #define PLANETE_H
 
+#include <string>
+
 /* http://www.planetesdelyvette.u-psud.fr/spip.php?article47 */
 /* Ex: rayon de mercure = diametre/2 -> 0.5cm/2 = 0.25; etc.. pour les autres*/
 const double RADIUS_SOLEIL = 10;    // non proportionel
@@ -27,6 +29,32 @@ const int DISTANCE_SATURNE = 59;
 const int DISTANCE_URANUS = 70;
 const int DISTANCE_NEPTUNE = 78;
 
+/* https://fr.wikipedia.org/wiki/P%C3%A9riode_de_r%C3%A9volution#Plan.C3.A8tes */
+/* Référence des révolutions des planetes en jours */
+const double REVOLUTION_MERCURE = 87.97;
+const double REVOLUTION_VENUS = 224.69;
+
+const double REVOLUTION_TERRE = 365.25;
+const double REVOLUTION_LUNE_TERRE = 29.5;  /* https://www.le-systeme-solaire.net/lune.html */
+const double REVOLUTION_MARS = 686.98;
+const double REVOLUTION_JUPITER = 4332.59;
+const double REVOLUTION_SATURNE = 10759.23;
+const double REVOLUTION_URANUS = 30685.4;
+const double REVOLUTION_NEPTUNE = 60266;
+
+/* https://fr.wikipedia.org/wiki/P%C3%A9riode_de_rotation#Quelques_p.C3.A9riodes_de_rotation_sid.C3.A9rale */
+/* Référence des rotations des planetes en heures */
+const double ROTATION_SOLEIL = 26*24;
+const double ROTATION_MERCURE = 59*24;
+const double ROTATION_VENUS = -243*24; // retrograde!
+const double ROTATION_TERRE = 24; // environ 24h (23h56mn4.09s exactement)
+const double ROTATION_LUNE = 27.32*24;
+const double ROTATION_MARS = 24.61;
+const double ROTATION_JUPITER = 9.83;
+const double ROTATION_SATURNE = 10.23;
+const double ROTATION_URANUS = -17; // environ 17h (17h14mn exactement) / retrograde!
+const double ROTATION_NEPTUNE = 18.2;
+
 //
 // Planete *mer = new Planete (0.25, 17, 0, 4.74, 02.11, 0);
 // Planete *ven = new Planete (0.6, 20, 0, 3.50, 177.0, 0);
@@ -41,6 +69,7 @@ const int DISTANCE_NEPTUNE = 78;
 class Planete {
 private:
 
+std::string m_name;
 double m_radius;
 double m_distance;
 double m_orbit;
@@ -50,11 +79,11 @@ double m_axisAni;
 
 public:
 // constructeur-destructeur
-Planete(double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni);
+Planete(std::string name, double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni);
 ~Planete();
 
 // GETTERS/SETTERS
-
+std::string getName();
 double getRadius();
 double getDistance();
 double getOrbit();
@@ -62,6 +91,7 @@ double getOrbitSpeed();
 double getAxisTilt();
 double getAxisAni();
 
+void setName(std::string n);
 void setRadius(double r);
 void setDistance(double d);
 void setOrbit(double o);
@@ -70,9 +100,12 @@ void setAxisTilt(double at);
 void setAxisAni(double aa);
 
 
-void animate();
 void dessinerOrbite();
 void drawMoon();
+void deplacementEnUneHeure(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins);
+void deplacementEnUnJour(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins);
+void deplacementEnUneSemaine(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins);
+void deplacementEnUnMois(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins);
 
 };
 

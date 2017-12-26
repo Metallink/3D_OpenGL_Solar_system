@@ -21,18 +21,18 @@ using namespace std;
 /* De plus, les distances n'ont pas été respecté comme specifié dans le sujet. J'ai fait en sorte que les planetes soient equidistantes.*/
 
 /* RAPPEL CONSTRUCTEUR DE LA CLASSE PLANETE */
-/*Planete(double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni); */
+/*Planete(string name, double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni); */
 
-Planete *sun = new Planete (RADIUS_SOLEIL, DISTANCE_SOLEIL, 0, 0, 0, 0); // radius du soleil non respecté sinon beaucoup trop grand par rapport aux autres planetes
-Planete *mer = new Planete (RADIUS_MERCURE, DISTANCE_MERCURE, 0, 4.74, 02.11, 0);
-Planete *ven = new Planete (RADIUS_VENUS, DISTANCE_VENUS, 0, 3.50, 177.0, 0);
-Planete *ear = new Planete (RADIUS_TERRE, DISTANCE_TERRE, 0, 2.98, 23.44, 0);
-Planete *lun = new Planete (RADIUS_LUNE, DISTANCE_LUNE, 0, 5.40, 0, 0);
-Planete *mar = new Planete (RADIUS_MARS, DISTANCE_MARS, 0, 2.41, 25.00, 0);
-Planete *jup = new Planete (RADIUS_JUPITER, DISTANCE_JUPITER, 0, 1.31, 03.13, 0);
-Planete *sat = new Planete (RADIUS_SATURNE, DISTANCE_SATURNE, 0, 0.97, 26.70, 0);
-Planete *ura = new Planete (RADIUS_URANUS, DISTANCE_URANUS, 0, 0.68, 97.77, 0);
-Planete *nep = new Planete (RADIUS_NEPTUNE, DISTANCE_NEPTUNE, 0, 0.54, 28.32, 0);
+Planete *sun = new Planete ("Soleil", RADIUS_SOLEIL, DISTANCE_SOLEIL, 0, 0, 0, 0); // radius du soleil non respecté sinon beaucoup trop grand par rapport aux autres planetes
+Planete *mer = new Planete ("Mercure", RADIUS_MERCURE, DISTANCE_MERCURE, 0, 4.74, 02.11, 0);
+Planete *ven = new Planete ("Venus", RADIUS_VENUS, DISTANCE_VENUS, 0, 3.50, 177.0, 0);
+Planete *ear = new Planete ("Terre", RADIUS_TERRE, DISTANCE_TERRE, 0, 2.98, 23.44, 0);
+Planete *lun = new Planete ("Lune", RADIUS_LUNE, DISTANCE_LUNE, 0, 5.40, 0, 0);
+Planete *mar = new Planete ("Mars", RADIUS_MARS, DISTANCE_MARS, 0, 2.41, 25.00, 0);
+Planete *jup = new Planete ("Jupiter", RADIUS_JUPITER, DISTANCE_JUPITER, 0, 1.31, 03.13, 0);
+Planete *sat = new Planete ("Saturne", RADIUS_SATURNE, DISTANCE_SATURNE, 0, 0.97, 26.70, 0);
+Planete *ura = new Planete ("Uranus", RADIUS_URANUS, DISTANCE_URANUS, 0, 0.68, 97.77, 0);
+Planete *nep = new Planete ("Neptune", RADIUS_NEPTUNE, DISTANCE_NEPTUNE, 0, 0.54, 28.32, 0);
 
 
 //FIXME: essayer d'utiliser la fonction dessinerOrbite de planete.cpp au lieu de cette merde
@@ -57,7 +57,7 @@ int smallOrbitActive = 1;
 int moonsActive = 1;
 int changeCamera = 0;
 
-GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, staTexture, logTexture, satRingTexture;
+GLuint sunTexture, merTexture, venTexture, earTexture, lunTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, staTexture, satRingTexture;
 
 
 
@@ -116,9 +116,8 @@ void MyScene::init()
         /**             CHARGEMENT DES TEXTURES             **/
         /*****************************************************/
 
-        //Texture *sta = readBMP("../isiviewer_glut/textures/espace.bmp");  staTexture = loadTexture(sta);  delete sta;
         Texture *sta = new Texture();
-        sta->readBMP("../isiviewer_glut/textures/espace.bmp");
+        sta->readBMP(GALAXIE_FICHIER_BMP);
         staTexture = sta->loadTexture();
         delete sta;
 
@@ -141,6 +140,11 @@ void MyScene::init()
         terre->readBMP(TERRE_FICHIER_BMP);
         earTexture = terre->loadTexture();
         delete terre;
+
+        Texture *lune = new Texture();
+        lune->readBMP(LUNE_FICHIER_BMP);
+        lunTexture = lune->loadTexture();
+        delete lune;
 
         Texture *mars = new Texture();
         mars->readBMP(MARS_FICHIER_BMP);
@@ -171,19 +175,6 @@ void MyScene::init()
         neptune->readBMP(NEPTUNE_FICHIER_BMP);
         nepTexture = neptune->loadTexture();
         delete neptune;
-
-        //NOTE:FONCTIONNELLE
-        // Texture *soleil = readBMP("../isiviewer_glut/textures/soleil.bmp"); sunTexture = loadTexture(soleil); delete soleil;
-        // Texture *sta = readBMP("../isiviewer_glut/textures/espace.bmp");  staTexture = loadTexture(sta);  delete sta;
-        // Texture *mer = readBMP("../isiviewer_glut/textures/mercure.bmp"); merTexture = loadTexture(mer);  delete mer;
-        // Texture *ven = readBMP("../isiviewer_glut/textures/venus.bmp");  venTexture = loadTexture(ven);  delete ven;
-        // Texture *ear = readBMP("../isiviewer_glut/textures/terre.bmp");  earTexture = loadTexture(ear);  delete ear;
-        // Texture *mar = readBMP("../isiviewer_glut/textures/mars.bmp");  marTexture = loadTexture(mar);  delete mar;
-        // Texture *jup = readBMP("../isiviewer_glut/textures/jupiter.bmp"); jupTexture = loadTexture(jup);  delete jup;
-        // Texture *sat = readBMP("../isiviewer_glut/textures/saturne.bmp");  satTexture = loadTexture(sat);  delete sat;
-        // Texture *ura = readBMP("../isiviewer_glut/textures/uranus.bmp");  uraTexture = loadTexture(ura);  delete ura;
-        // Texture *nep = readBMP("../isiviewer_glut/textures/neptune.bmp"); nepTexture = loadTexture(nep);  delete nep;
-
 }
 
 /**
@@ -344,8 +335,26 @@ void MyScene::draw()
                 gluSphere(quadric, ear->getRadius(), 20.0, 20.0);
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
-                // lune
-                lun->drawMoon();
+
+                /* Lune */
+                // trace orbite de la lune
+                glPushMatrix();
+                glColor3ub(255, 255, 255);
+                glRotated(90.0, 1.0, 0.0, 0.0);
+                glutWireTorus(0.001, lun->getDistance(), 100.0, 100.0);
+                glPopMatrix();
+                glPushMatrix();
+                glColor3ub(255, 255, 255);
+                glRotatef(lun->getOrbit(), 0.0, 1.0, 0.0);
+                glTranslatef(lun->getDistance(), 0.0, 0.0);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, lunTexture);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+                gluQuadricTexture(quadric, 1);
+                gluSphere(quadric, lun->getRadius(), 20.0, 20.0);
+                glDisable(GL_TEXTURE_2D);
+                glPopMatrix();
                 glPopMatrix();
 
                 //Mars, Orbits, Moons
@@ -472,18 +481,18 @@ void MyScene::draw()
 
         //espace
         //FIXME: PK IL Y'A UN ROND NOIR???
-        // glPushMatrix();
-        // glScalef(-0.1,-0.1,-0.1);
-        // glTranslatef(0.0, 0.0, 0.0);
-        // glEnable(GL_TEXTURE_2D);
-        // glBindTexture(GL_TEXTURE_2D, staTexture);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        // gluQuadricOrientation(quadric,GLU_INSIDE);
-        // gluQuadricTexture(quadric, 1);
-        // gluSphere(quadric, 30, 20.0, 20.0);
-        // glDisable(GL_TEXTURE_2D);
-        // glPopMatrix();
+        glPushMatrix();
+        glScalef(-0.1,-0.1,-0.1);
+        glTranslatef(0.0, 0.0, 0.0);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, staTexture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        gluQuadricOrientation(quadric,GLU_INSIDE);
+        gluQuadricTexture(quadric, 1);
+        gluSphere(quadric, 30, 20.0, 20.0);
+        glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
 
 } // end of draw
 
@@ -588,25 +597,142 @@ bool MyScene::keyPressEvent(QKeyEvent *e)
                 handled = true;
         }
 
-        // change displau mode with 's'
-        else if ((e->key()==Qt::Key_S) && (modifiers==Qt::NoButton)) {
+        // change displau mode with 'z'
+        else if ((e->key()==Qt::Key_Z) && (modifiers==Qt::NoButton)) {
                 this->slotSetDisplayMode(_displayMode+1);
                 handled = true;
         }
-        // change displau mode with 'z'
-        else if ((e->key()==Qt::Key_Z) && (modifiers==Qt::NoButton)) {
 
-                sun->animate();
-                mer->animate();
-                ven->animate();
-                ear->animate();
-                mar->animate();
-                jup->animate();
-                sat->animate();
-                ura->animate();
-                nep->animate();
-                lun->animate();
+        // on souhaite avancer l'animation d'une heure
+        if ((e->key()==Qt::Key_H) && (modifiers==Qt::NoButton)) {
 
+                sun->deplacementEnUneHeure(1, ROTATION_SOLEIL, 1); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUneHeure(REVOLUTION_MERCURE, ROTATION_MERCURE, 1);
+                ven->deplacementEnUneHeure(REVOLUTION_VENUS, ROTATION_VENUS, 1);
+                ear->deplacementEnUneHeure(REVOLUTION_TERRE, ROTATION_TERRE, 1);
+                lun->deplacementEnUneHeure(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 1);
+                mar->deplacementEnUneHeure(REVOLUTION_MARS, ROTATION_MARS, 1);
+                jup->deplacementEnUneHeure(REVOLUTION_JUPITER, ROTATION_JUPITER, 1);
+                sat->deplacementEnUneHeure(REVOLUTION_SATURNE, ROTATION_SATURNE, 1);
+                ura->deplacementEnUneHeure(REVOLUTION_URANUS, ROTATION_URANUS, 1);
+                nep->deplacementEnUneHeure(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 1);
+
+                handled = true;
+        }
+        // on souhaite reculer l'animation d'une heure
+        else if ((e->key()==Qt::Key_H) && (modifiers==Qt::SHIFT)) {
+
+                sun->deplacementEnUneHeure(1, ROTATION_SOLEIL, 0); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUneHeure(REVOLUTION_MERCURE, ROTATION_MERCURE, 0);
+                ven->deplacementEnUneHeure(REVOLUTION_VENUS, ROTATION_VENUS, 0);
+                ear->deplacementEnUneHeure(REVOLUTION_TERRE, ROTATION_TERRE, 0);
+                lun->deplacementEnUneHeure(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 0);
+                mar->deplacementEnUneHeure(REVOLUTION_MARS, ROTATION_MARS, 0);
+                jup->deplacementEnUneHeure(REVOLUTION_JUPITER, ROTATION_JUPITER, 0);
+                sat->deplacementEnUneHeure(REVOLUTION_SATURNE, ROTATION_SATURNE, 0);
+                ura->deplacementEnUneHeure(REVOLUTION_URANUS, ROTATION_URANUS, 0);
+                nep->deplacementEnUneHeure(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 0);
+
+                handled = true;
+        }
+
+        // on souhaite avancer l'animation d'un jour
+        if ((e->key()==Qt::Key_J) && (modifiers==Qt::NoButton)) {
+
+                sun->deplacementEnUnJour(1, ROTATION_SOLEIL, 1); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUnJour(REVOLUTION_MERCURE, ROTATION_MERCURE, 1);
+                ven->deplacementEnUnJour(REVOLUTION_VENUS, ROTATION_VENUS, 1);
+                ear->deplacementEnUnJour(REVOLUTION_TERRE, ROTATION_TERRE, 1);
+                lun->deplacementEnUnJour(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 1);
+                mar->deplacementEnUnJour(REVOLUTION_MARS, ROTATION_MARS, 1);
+                jup->deplacementEnUnJour(REVOLUTION_JUPITER, ROTATION_JUPITER, 1);
+                sat->deplacementEnUnJour(REVOLUTION_SATURNE, ROTATION_SATURNE, 1);
+                ura->deplacementEnUnJour(REVOLUTION_URANUS, ROTATION_URANUS, 1);
+                nep->deplacementEnUnJour(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 1);
+
+                handled = true;
+        }
+        // on souhaite reculer l'animation d'un jour
+        else if ((e->key()==Qt::Key_J) && (modifiers==Qt::SHIFT)) {
+
+                sun->deplacementEnUnJour(1, ROTATION_SOLEIL, 0); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUnJour(REVOLUTION_MERCURE, ROTATION_MERCURE, 0);
+                ven->deplacementEnUnJour(REVOLUTION_VENUS, ROTATION_VENUS, 0);
+                ear->deplacementEnUnJour(REVOLUTION_TERRE, ROTATION_TERRE, 0);
+                lun->deplacementEnUnJour(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 0);
+                mar->deplacementEnUnJour(REVOLUTION_MARS, ROTATION_MARS, 0);
+                jup->deplacementEnUnJour(REVOLUTION_JUPITER, ROTATION_JUPITER, 0);
+                sat->deplacementEnUnJour(REVOLUTION_SATURNE, ROTATION_SATURNE, 0);
+                ura->deplacementEnUnJour(REVOLUTION_URANUS, ROTATION_URANUS, 0);
+                nep->deplacementEnUnJour(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 0);
+
+                handled = true;
+        }
+
+        // on souhaite avancer l'animation d'une semaine
+        if ((e->key()==Qt::Key_S) && (modifiers==Qt::NoButton)) {
+
+                sun->deplacementEnUneSemaine(1, ROTATION_SOLEIL, 1); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUneSemaine(REVOLUTION_MERCURE, ROTATION_MERCURE, 1);
+                ven->deplacementEnUneSemaine(REVOLUTION_VENUS, ROTATION_VENUS, 1);
+                ear->deplacementEnUneSemaine(REVOLUTION_TERRE, ROTATION_TERRE, 1);
+                lun->deplacementEnUneSemaine(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 1);
+                mar->deplacementEnUneSemaine(REVOLUTION_MARS, ROTATION_MARS, 1);
+                jup->deplacementEnUneSemaine(REVOLUTION_JUPITER, ROTATION_JUPITER, 1);
+                sat->deplacementEnUneSemaine(REVOLUTION_SATURNE, ROTATION_SATURNE, 1);
+                ura->deplacementEnUneSemaine(REVOLUTION_URANUS, ROTATION_URANUS, 1);
+                nep->deplacementEnUneSemaine(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 1);
+
+                handled = true;
+        }
+        // on souhaite reculer l'animation d'une semaine
+        else if ((e->key()==Qt::Key_S) && (modifiers==Qt::SHIFT)) {
+
+                sun->deplacementEnUneSemaine(1, ROTATION_SOLEIL, 0); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUneSemaine(REVOLUTION_MERCURE, ROTATION_MERCURE, 0);
+                ven->deplacementEnUneSemaine(REVOLUTION_VENUS, ROTATION_VENUS, 0);
+                ear->deplacementEnUneSemaine(REVOLUTION_TERRE, ROTATION_TERRE, 0);
+                lun->deplacementEnUneSemaine(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 0);
+                mar->deplacementEnUneSemaine(REVOLUTION_MARS, ROTATION_MARS, 0);
+                jup->deplacementEnUneSemaine(REVOLUTION_JUPITER, ROTATION_JUPITER, 0);
+                sat->deplacementEnUneSemaine(REVOLUTION_SATURNE, ROTATION_SATURNE, 0);
+                ura->deplacementEnUneSemaine(REVOLUTION_URANUS, ROTATION_URANUS, 0);
+                nep->deplacementEnUneSemaine(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 0);
+
+                handled = true;
+        }
+
+        // on souhaite avancer l'animation d'un mois
+        if ((e->key()==Qt::Key_M) && (modifiers==Qt::NoButton)) {
+
+                sun->deplacementEnUnMois(1, ROTATION_SOLEIL, 1); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUnMois(REVOLUTION_MERCURE, ROTATION_MERCURE, 1);
+                ven->deplacementEnUnMois(REVOLUTION_VENUS, ROTATION_VENUS, 1);
+                ear->deplacementEnUnMois(REVOLUTION_TERRE, ROTATION_TERRE, 1);
+                lun->deplacementEnUnMois(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 1);
+                mar->deplacementEnUnMois(REVOLUTION_MARS, ROTATION_MARS, 1);
+                jup->deplacementEnUnMois(REVOLUTION_JUPITER, ROTATION_JUPITER, 1);
+                sat->deplacementEnUnMois(REVOLUTION_SATURNE, ROTATION_SATURNE, 1);
+                ura->deplacementEnUnMois(REVOLUTION_URANUS, ROTATION_URANUS, 1);
+                nep->deplacementEnUnMois(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 1);
+
+                handled = true;
+        }
+        // on souhaite reculer l'animation d'un mois
+        else if ((e->key()==Qt::Key_M) && (modifiers==Qt::SHIFT)) {
+
+                sun->deplacementEnUnMois(1, ROTATION_SOLEIL, 0); // ref. revolution du soleil à 1 pour ne pas avoir une division par 0 lors du calcul de la revolution
+                mer->deplacementEnUnMois(REVOLUTION_MERCURE, ROTATION_MERCURE, 0);
+                ven->deplacementEnUnMois(REVOLUTION_VENUS, ROTATION_VENUS, 0);
+                ear->deplacementEnUnMois(REVOLUTION_TERRE, ROTATION_TERRE, 0);
+                lun->deplacementEnUnMois(REVOLUTION_LUNE_TERRE, ROTATION_LUNE, 0);
+                mar->deplacementEnUnMois(REVOLUTION_MARS, ROTATION_MARS, 0);
+                jup->deplacementEnUnMois(REVOLUTION_JUPITER, ROTATION_JUPITER, 0);
+                sat->deplacementEnUnMois(REVOLUTION_SATURNE, ROTATION_SATURNE, 0);
+                ura->deplacementEnUnMois(REVOLUTION_URANUS, ROTATION_URANUS, 0);
+                nep->deplacementEnUnMois(REVOLUTION_NEPTUNE, ROTATION_NEPTUNE, 0);
+
+                handled = true;
         }
 
 

@@ -2,12 +2,14 @@
 
 #include <math.h>
 #include <iostream>
+
 #include <GL/gl.h>
 #include <GL/glut.h>
 
 using namespace std;
 
-Planete::Planete(double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni) {
+Planete::Planete(string name, double radius, double distance, double orbit, double orbitSpeed, double axisTilt, double axisAni) {
+        m_name = name;
         m_radius = radius;
         m_distance = distance;
         m_orbit = orbit;
@@ -57,17 +59,141 @@ void Planete::drawMoon() {
         glPopMatrix();
 }
 
-void Planete::animate() {
+void Planete::deplacementEnUneHeure(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins) {
 
-        m_orbit += m_orbitSpeed;
-        if (m_orbit > 360.0)
-                m_orbit -= 360.0;
+        // la ref. de la revolution de la planete sera donnée en jours
+        double revolution = (360.0) / (refRevolutionPlanete*24);
+        // la ref. de la rotation de la planete sera donnée en heures
+        double rotation = (360.0) / refRotationPlanete;
 
-        m_axisAni += 10.0;
-        if (m_axisAni > 360.0)
-                m_axisAni -= 360.0;
+        /* Le soleil est la planete de reference, elle n'a donc pas de revolution mais une rotation: on traite ce cas */
+        if (this->getName().compare("Soleil") == 0) {
+
+                // si on souhaite avancer d'une heure
+                if (plusOuMoins == 1) {
+                        m_axisAni += rotation;
+                        if (m_axisAni > 360.0)
+                                m_axisAni -= 360.0;
+                }
+                else if (plusOuMoins == 0) { // ou alors on souhaite reculer d'une heure
+                        m_axisAni -= rotation;
+                        if (m_axisAni < 0)
+                                m_axisAni += 360.0;
+                }
+        }
+        else { // pour les autres planetes
+
+                // si on souhaite avancer d'une heure
+                if (plusOuMoins == 1) {
+                        m_orbit += revolution;
+                        if (m_orbit > 360.0)
+                                m_orbit -= 360.0;
+
+                        m_axisAni += rotation;
+                        if (m_axisAni > 360.0)
+                                m_axisAni -= 360.0;
+                }
+                else if (plusOuMoins == 0) { // ou alors on souhaite reculer d'une heure
+                        m_orbit -= revolution;
+                        if (m_orbit < 0)
+                                m_orbit += 360.0;
+
+                        m_axisAni -= rotation;
+                        if (m_axisAni < 0)
+                                m_axisAni += 360.0;
+                }
+        }
 }
 
+void Planete::deplacementEnUnJour(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins) {
+
+        // la ref. de la revolution de la planete sera donnée en jours
+        double revolution = 360.0 / refRevolutionPlanete;
+        // la ref. de la rotation de la planete sera donnée en heures
+        double rotation = 360.0 / (refRotationPlanete/24);
+
+        // si on souhaite avancer d'un jour
+        if (plusOuMoins == 1) {
+                m_orbit += revolution;
+                if (m_orbit > 360.0)
+                        m_orbit -= 360.0;
+
+                m_axisAni += rotation;
+                if (m_axisAni > 360.0)
+                        m_axisAni -= 360.0;
+        }
+        else if (plusOuMoins == 0) { // ou alors on souhaite reculer d'un jour
+                m_orbit -= revolution;
+                if (m_orbit < 0)
+                        m_orbit += 360.0;
+
+                m_axisAni -= rotation;
+                if (m_axisAni < 0)
+                        m_axisAni += 360.0;
+        }
+}
+
+void Planete::deplacementEnUneSemaine(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins) {
+
+        // la ref. de la revolution de la planete sera donnée en jours
+        double revolution = 360.0 / (refRevolutionPlanete/7);
+        // la ref. de la rotation de la planete sera donnée en heures
+        double rotation = 360.0 / (refRotationPlanete/(7*24));
+
+        // si on souhaite avancer d'un jour
+        if (plusOuMoins == 1) {
+                m_orbit += revolution;
+                if (m_orbit > 360.0)
+                        m_orbit -= 360.0;
+
+                m_axisAni += rotation;
+                if (m_axisAni > 360.0)
+                        m_axisAni -= 360.0;
+        }
+        else if (plusOuMoins == 0) { // ou alors on souhaite reculer d'un jour
+                m_orbit -= revolution;
+                if (m_orbit < 0)
+                        m_orbit += 360.0;
+
+                m_axisAni -= rotation;
+                if (m_axisAni < 0)
+                        m_axisAni += 360.0;
+        }
+}
+
+void Planete::deplacementEnUnMois(double refRevolutionPlanete, double refRotationPlanete, int plusOuMoins) {
+
+        // la ref. de la revolution de la planete sera donnée en jours
+        double revolution = 360.0 / (refRevolutionPlanete/30); // je pars du principe qu'il y'a 30 jours dans un mois
+        // la ref. de la rotation de la planete sera donnée en heures
+        double rotation = 360.0 / (refRotationPlanete/(30*24));
+
+        // si on souhaite avancer d'un jour
+        if (plusOuMoins == 1) {
+                m_orbit += revolution;
+                if (m_orbit > 360.0)
+                        m_orbit -= 360.0;
+
+                m_axisAni += rotation;
+                if (m_axisAni > 360.0)
+                        m_axisAni -= 360.0;
+        }
+        else if (plusOuMoins == 0) { // ou alors on souhaite reculer d'un jour
+                m_orbit -= revolution;
+                if (m_orbit < 0)
+                        m_orbit += 360.0;
+
+                m_axisAni -= rotation;
+                if (m_axisAni < 0)
+                        m_axisAni += 360.0;
+        }
+}
+
+
+/* GETTERS */
+string Planete::getName() {
+        return m_name;
+}
 
 double Planete::getRadius() {
         return m_radius;
@@ -93,6 +219,10 @@ double Planete::getAxisAni() {
         return m_axisAni;
 }
 
+/* SETTERS */
+void Planete::setName(string n) {
+        m_name = n;
+}
 
 void Planete::setRadius(double r) {
         m_radius = r;
