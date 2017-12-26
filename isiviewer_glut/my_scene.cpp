@@ -57,7 +57,7 @@ int smallOrbitActive = 1;
 int moonsActive = 1;
 int changeCamera = 0;
 
-GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, pluTexture, staTexture, logTexture;
+GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture, staTexture, logTexture, satRingTexture;
 
 
 
@@ -117,6 +117,11 @@ void MyScene::init()
         /*****************************************************/
 
         //Texture *sta = readBMP("../isiviewer_glut/textures/espace.bmp");  staTexture = loadTexture(sta);  delete sta;
+        Texture *sta = new Texture();
+        sta->readBMP("../isiviewer_glut/textures/espace.bmp");
+        staTexture = sta->loadTexture();
+        delete sta;
+
         Texture *soleil = new Texture();
         soleil->readBMP(SOLEIL_FICHIER_BMP);
         sunTexture = soleil->loadTexture();
@@ -151,6 +156,11 @@ void MyScene::init()
         saturne->readBMP(SATURNE_FICHIER_BMP);
         satTexture = saturne->loadTexture();
         delete saturne;
+
+        Texture *anneau_saturne = new Texture();
+        anneau_saturne->readBMP(SATURNE_ANNEAUX_FICHIER_BMP);
+        satRingTexture = anneau_saturne->loadTexture();
+        delete anneau_saturne;
 
         Texture *uranus = new Texture();
         uranus->readBMP(URANUS_FICHIER_BMP);
@@ -395,12 +405,25 @@ void MyScene::draw()
                 gluSphere(quadric, sat->getRadius(), 20.0, 20.0);
                 glPopMatrix();
                 glDisable(GL_TEXTURE_2D);
+                // ANNEAUX DE SATURNE
+                //FIXME: ANNEAUX BOF, VOIR SI CA PEUT S'AMELIORER
+                //NOTE: https://learnopengl.com/#!Advanced-OpenGL/Instancing
                 glPushMatrix();
-                glColor3ub(158, 145, 137);
-                glRotatef(-63.0, 1.0, 0.0, 0.0);
-                glutWireTorus(0.2, 6.0, 30.0, 30.0);
-                glutWireTorus(0.4, 5.0, 30.0, 30.0);
+                glRotatef(-66.0, 1.0, 0.0, 0.0);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, satRingTexture);
+                glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                gluQuadricTexture(quadric, 1);
+                gluQuadricDrawStyle(quadric, GLU_FILL);
+                gluDisk(quadric, sat->getRadius()+0.65, sat->getRadius()+2.3, 30.0, 30.0);
                 glPopMatrix();
+                // glPushMatrix();
+                // glColor3ub(158, 145, 137);
+                // glRotatef(-63.0, 1.0, 0.0, 0.0);
+                // glutWireTorus(0.2, 8.0, 30.0, 30.0);
+                // glutWireTorus(0.4, 7.0, 30.0, 30.0);
+                // glPopMatrix();
                 glPopMatrix();
 
                 glColor3ub(255, 255, 255); //FIXES SHADING ISSUE
@@ -444,26 +467,25 @@ void MyScene::draw()
                 glDisable(GL_TEXTURE_2D);
                 glPopMatrix();
                 glPopMatrix();
-
-                //espace
-                //FIXME: pk il y'a un rond noir?
-                // glPushMatrix();
-                // glScalef(-0.1,-0.1,-0.1);
-                // glTranslatef(0.0, 0.0, 0.0);
-                // glEnable(GL_TEXTURE_2D);
-                // glBindTexture(GL_TEXTURE_2D, staTexture);
-                // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-                // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-                // gluQuadricOrientation(quadric,GLU_INSIDE);
-                // gluQuadricTexture(quadric, 1);
-                // gluSphere(quadric, 30, 20.0, 20.0);
-                // glDisable(GL_TEXTURE_2D);
-                // glPopMatrix();
         }
-
         glPopMatrix();
 
-}
+        //espace
+        //FIXME: PK IL Y'A UN ROND NOIR???
+        // glPushMatrix();
+        // glScalef(-0.1,-0.1,-0.1);
+        // glTranslatef(0.0, 0.0, 0.0);
+        // glEnable(GL_TEXTURE_2D);
+        // glBindTexture(GL_TEXTURE_2D, staTexture);
+        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        // gluQuadricOrientation(quadric,GLU_INSIDE);
+        // gluQuadricTexture(quadric, 1);
+        // gluSphere(quadric, 30, 20.0, 20.0);
+        // glDisable(GL_TEXTURE_2D);
+        // glPopMatrix();
+
+} // end of draw
 
 /**
  * Slot set current object
