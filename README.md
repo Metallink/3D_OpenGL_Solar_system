@@ -2,7 +2,7 @@
 This project is a school project that consists in coding a 3D animated solar system using only C++ ! It is based on my teacher's template (M. Jobard)
 
 # Libraries used
-Used for this project:
+I used for this project:
 - C++
 - OpenGL
 - Qt4
@@ -12,7 +12,7 @@ Used for this project:
 These are instructions for Ubuntu systems. I do not know how to install the above libraries on Windows/Mac. Sorry :c <br />
 
 ## Setting up your environment
-To configure your environment, do the following:
+To configure your environment, you must do the following:
 
 ### Under Ubuntu 14.04
 - install the packets:
